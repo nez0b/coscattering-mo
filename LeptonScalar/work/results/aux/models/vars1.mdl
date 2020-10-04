@@ -1,0 +1,19 @@
+LeptonScalar
+ Parameters
+  Name         | Value       |> Comment                                                                <|
+ychis          |0.1          |chi phi scalar coupling MR$Null -> {NP, 1}                                |
+ychip          |0.1          |chi phi pseudoscalar coupling MR$Null -> {NP, 1}                          |
+yds            |0.1          |lepton phi scalar yukawa  MR$Null -> {NP, 1}                              |
+ydp            |0.1          |lepton phi pseudoscalar yukawa  MR$Null -> {NP, 1}                        |
+yods           |0.1          |lepton off-diag phi scalar coupling MR$Null -> {NP, 1}                    |
+yodp           |0.1          |lepton off-diag phi pseudoscalar coupling  MR$Null -> {NP, 1}             |
+aEWM1          |127.9        |Inverse of the EW coupling constant at the Z pole                         |
+Mmu            |0.10566      |Mass of mu.                                                               |
+Mtau           |1.777        |Mass of tau.                                                              |
+Mchi           |0.1          |Mass of chi.                                                              |
+Mphi           |0.1          |Mass of phi.                                                              |
+%Wmu           |0            |Width of mu.                                                              |
+%Wtau          |0            |Width of tau.                                                             |
+%Wphi          |1            |Width of phi.                                                             |
+E              |2.71828182845|The base of the natural logarithm.                                        |
+Pi             |3.14159265358|The circumference of a circle divided by the diameter.                    |

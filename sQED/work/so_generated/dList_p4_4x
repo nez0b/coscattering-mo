@@ -1,0 +1,8 @@
+~n1 -> S,~n2,~n2,~n2~
+~n1 -> Ap,~n2,~n2,~n2~
+~n1 -> S,S,S,~n2
+~n1 -> Ap,S,S,~n2
+~n1 -> Ap,Ap,S,~n2
+~n1 -> e-,e+,S,~n2
+~n1 -> Ap,Ap,Ap,~n2
+~n1 -> e-,e+,Ap,~n2

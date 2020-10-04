@@ -1,0 +1,22 @@
+ScalarQEDdec
+ Parameters
+  Name         | Value       |> Comment                                                                <|
+gD             |1.1          |U(1)D coupling                                                            |
+aEWM1          |127.9        |Inverse of the EW coupling constant at the Z pole                         |
+epsilon        |1.1          |Kinetic Mixing coeff                                                      |
+sd             |0.01         |mixing angle between chi and psi                                          |
+lamPsiS        |0.1          |psi S quartic coupling                                                    |
+lamChiPsi      |0.1          |chi psi quartic coupling                                                  |
+vevH           |0            |vev of dark higgs H                                                       |
+Me             |0.000514     |Mass of ef.                                                               |
+MAp            |0.1          |Mass of Ap.                                                               |
+MS             |0.1          |Mass of S.                                                                |
+Mn1            |1            |Mass of PRIVATE`MassToPart[Mn1].                                          |
+Mn2            |1            |Mass of PRIVATE`MassToPart[Mn2].                                          |
+%Wef           |0            |Width of ef.                                                              |
+%wAp           |1            |Width of Ap.                                                              |
+%WS            |5.23795      |Width of S.                                                               |
+%Wn1           |0.           |Width of n1.                                                              |
+%Wn2           |0.           |Width of n2.                                                              |
+E              |2.71828182845|The base of the natural logarithm.                                        |
+Pi             |3.14159265358|The circumference of a circle divided by the diameter.                    |

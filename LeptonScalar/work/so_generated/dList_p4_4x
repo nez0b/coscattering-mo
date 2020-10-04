@@ -1,0 +1,13 @@
+phi -> ~chi,~chi,~chi~,~chi~
+phi -> tau-,tau+,~chi,~chi~
+phi -> mu-,tau+,~chi,~chi~
+phi -> mu+,tau-,~chi,~chi~
+phi -> mu-,mu+,~chi,~chi~
+phi -> mu-,tau-,tau+,tau+
+phi -> mu-,mu-,tau+,tau+
+phi -> mu+,tau-,tau-,tau+
+phi -> mu-,mu+,tau-,tau+
+phi -> mu-,mu-,mu+,tau+
+phi -> mu+,mu+,tau-,tau-
+phi -> mu-,mu+,mu+,tau-
+phi -> mu-,mu-,mu+,mu+

@@ -1,0 +1,29 @@
+ScalarQEDdec
+ Vertices
+A1           |A2           |A3           |A4           |>         Factor              <|>  Lorentz pa<|
+~n1           |~n1~          |~n2           |~n2~          |x1x0                           |1
+~n2           |~n2~          |S            |S            |x2x0                           |1
+~n1           |~n1~          |~n1~          |~n2           |x3x0                           |1
+~n1           |~n1           |~n1~          |~n2~          |x4x0                           |1
+~n1~          |~n2           |~n2           |~n2~          |x5x0                           |1
+~n1           |~n2           |~n2~          |~n2~          |x6x0                           |1
+~n1~          |~n2           |S            |S            |x7x0                           |1
+~n1           |~n2~          |S            |S            |x8x0                           |1
+~n1           |~n1           |~n1~          |~n1~          |x9x0                           |1
+~n1~          |~n1~          |~n2           |~n2           |x10x0                          |1
+~n1           |~n1           |~n2~          |~n2~          |x11x0                          |1
+~n2           |~n2           |~n2~          |~n2~          |x12x0                          |1
+~n1           |~n1~          |S            |S            |x13x0                          |1
+~n2           |~n2~          |S            |             |x14x0                          |1
+~n1~          |~n2           |S            |             |x15x0                          |1
+~n1           |~n2~          |S            |             |x16x0                          |1
+~n1           |~n1~          |S            |             |x17x0                          |1
+Ap           |Ap           |~n1           |~n1~          |x18x0                          |m1.m2
+Ap           |Ap           |~n1~          |~n2           |x19x0                          |m1.m2
+Ap           |Ap           |~n1           |~n2~          |x20x0                          |m1.m2
+Ap           |Ap           |~n2           |~n2~          |x21x0                          |m1.m2
+Ap           |~n1           |~n1~          |             |x22x0                          |-p2.m1+p3.m1
+Ap           |~n1           |~n2~          |             |x23x0                          |-p2.m1+p3.m1
+Ap           |~n1~          |~n2           |             |x24x0                          |-p2.m1+p3.m1
+Ap           |~n2           |~n2~          |             |x25x0                          |-p2.m1+p3.m1
+Ap           |e+           |e-           |             |EE*x26x0                       |G(m1)

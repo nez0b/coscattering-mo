@@ -1,0 +1,7 @@
+LeptonScalar
+ Particles
+ Full  name  |A          |A+         | number |2*spin| mass          |width          |color|aux|>LaTex(A)<|>LaTeX(A+)   <|
+mu           |mu-        |mu+        |13      |1     |Mmu            |!Wmu           |1    |0  |mu-       |mu+           |
+tau          |tau-       |tau+       |15      |1     |Mtau           |!Wtau          |1    |0  |tau-      |tau+          |
+chi          |~chi       |~chi~      |1000050 |1     |Mchi           |0              |1    |0  |~chi      |~chi~         |
+phi          |phi        |phi        |1000034 |0     |Mphi           |!Wphi          |1    |0  |phi       |phi           |

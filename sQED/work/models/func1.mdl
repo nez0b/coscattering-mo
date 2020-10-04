@@ -1,0 +1,51 @@
+ScalarQEDdec
+ Constraints
+  Name         |> Expression                                                                                                                                                             <|
+%*slhaFound    |1+access("vars1.lha", 0)                                                                                       %Check whether LHA file is present.
+%*rdSLHA       |if(slhaFound,slhaRead("vars1.lha", 0),-1)                                                                      %Read LHA file.
+%aEWM1         |if(slhaFound,if(slhaValExists("SMINPUTS",1,1),slhaVal("SMINPUTS",0,1,1),aEWM1Def),aEWM1Def)                    %Inverse of the EW coupling constant at the Z pole
+%vevH          |if(slhaFound,if(slhaValExists("vevH",1,1),slhaVal("vevH",0,1,1),vevHDef),vevHDef)                              %vev of dark higgs H
+%gD            |if(slhaFound,if(slhaValExists("FRBlock",1,1),slhaVal("FRBlock",0,1,1),gDDef),gDDef)                            %U(1)D coupling
+%epsilon       |if(slhaFound,if(slhaValExists("FRBlock",1,2),slhaVal("FRBlock",0,1,2),epsilonDef),epsilonDef)                  %Kinetic Mixing coeff
+%sd            |if(slhaFound,if(slhaValExists("FRBlock",1,3),slhaVal("FRBlock",0,1,3),sdDef),sdDef)                            %mixing angle between chi and psi
+%lamPsiS       |if(slhaFound,if(slhaValExists("FRBlock",1,4),slhaVal("FRBlock",0,1,4),lamPsiSDef),lamPsiSDef)                  %psi S quartic coupling
+%lamChiPsi     |if(slhaFound,if(slhaValExists("FRBlock",1,5),slhaVal("FRBlock",0,1,5),lamChiPsiDef),lamChiPsiDef)              %chi psi quartic coupling
+%Me            |if(slhaFound,if(slhaValExists("MASS",1,11),slhaVal("MASS",0,1,11),MeDef),MeDef)                                %Mass of ef.
+%MAp           |if(slhaFound,if(slhaValExists("MASS",1,1000050),slhaVal("MASS",0,1,1000050),MApDef),MApDef)                    %Mass of Ap.
+%MS            |if(slhaFound,if(slhaValExists("MASS",1,1000034),slhaVal("MASS",0,1,1000034),MSDef),MSDef)                      %Mass of S.
+%Mn1           |if(slhaFound,if(slhaValExists("MASS",1,1000035),slhaVal("MASS",0,1,1000035),Mn1Def),Mn1Def)                    %Mass of PRIVATE`MassToPart[Mn1].
+%Mn2           |if(slhaFound,if(slhaValExists("MASS",1,1000045),slhaVal("MASS",0,1,1000045),Mn2Def),Mn2Def)                    %Mass of PRIVATE`MassToPart[Mn2].
+%Wef           |if(slhaFound,if(1+slhaDecayExists(11),slhaWidth(11),WefDef),WefDef)                                            %Width of ef.
+%wAp           |if(slhaFound,if(1+slhaDecayExists(1000050),slhaWidth(1000050),wApDef),wApDef)                                  %Width of Ap.
+%WS            |if(slhaFound,if(1+slhaDecayExists(1000034),slhaWidth(1000034),WSDef),WSDef)                                    %Width of S.
+%Wn1           |if(slhaFound,if(1+slhaDecayExists(1000035),slhaWidth(1000035),Wn1Def),Wn1Def)                                  %Width of n1.
+%Wn2           |if(slhaFound,if(1+slhaDecayExists(1000045),slhaWidth(1000045),Wn2Def),Wn2Def)                                  %Width of n2.
+aEW            |pow(aEWM1,-1)                                                                                                  % Electroweak coupling contant
+EE             |2*pow(aEW,0.5)*pow(Pi,0.5)                                                                                     % Electric coupling constant
+cd             |pow(1-pow(sd,2),0.5)                                                                                           % cosine of mixing angle
+x1x0           |-(lamChiPsi*pow(pow(cd,2)-pow(sd,2),2))                                                                        % n1   n1~  n2   n2~   coupling.
+x2x0           |-2*lamPsiS*pow(cd,2)                                                                                           % n2   n2~  S    S     coupling.
+x3x0           |2*cd*lamChiPsi*sd*(pow(cd,2)-pow(sd,2))                                                                        % n1   n1~  n1~  n2    coupling.
+x4x0           |2*cd*lamChiPsi*sd*(pow(cd,2)-pow(sd,2))                                                                        % n1   n1   n1~  n2~   coupling.
+x5x0           |-2*cd*lamChiPsi*sd*(pow(cd,2)-pow(sd,2))                                                                       % n1~  n2   n2   n2~   coupling.
+x6x0           |-2*cd*lamChiPsi*sd*(pow(cd,2)-pow(sd,2))                                                                       % n1   n2   n2~  n2~   coupling.
+x7x0           |2*cd*lamPsiS*sd                                                                                                % n1~  n2   S    S     coupling.
+x8x0           |2*cd*lamPsiS*sd                                                                                                % n1   n2~  S    S     coupling.
+x9x0           |-4*lamChiPsi*pow(cd,2)*pow(sd,2)                                                                               % n1   n1   n1~  n1~   coupling.
+x10x0          |4*lamChiPsi*pow(cd,2)*pow(sd,2)                                                                                % n1~  n1~  n2   n2    coupling.
+x11x0          |4*lamChiPsi*pow(cd,2)*pow(sd,2)                                                                                % n1   n1   n2~  n2~   coupling.
+x12x0          |-4*lamChiPsi*pow(cd,2)*pow(sd,2)                                                                               % n2   n2   n2~  n2~   coupling.
+x13x0          |-2*lamPsiS*pow(sd,2)                                                                                           % n1   n1~  S    S     coupling.
+x14x0          |-2*lamPsiS*vevH*pow(cd,2)                                                                                      % n2   n2~  S     coupling.
+x15x0          |2*cd*lamPsiS*sd*vevH                                                                                           % n1~  n2   S     coupling.
+x16x0          |2*cd*lamPsiS*sd*vevH                                                                                           % n1   n2~  S     coupling.
+x17x0          |-2*lamPsiS*vevH*pow(sd,2)                                                                                      % n1   n1~  S     coupling.
+x18x0          |2*pow(cd,2)*pow(gD,2)                                                                                          % Ap   Ap   n1   n1~   coupling.
+x19x0          |2*cd*sd*pow(gD,2)                                                                                              % Ap   Ap   n1~  n2    coupling.
+x20x0          |2*cd*sd*pow(gD,2)                                                                                              % Ap   Ap   n1   n2~   coupling.
+x21x0          |2*pow(gD,2)*pow(sd,2)                                                                                          % Ap   Ap   n2   n2~   coupling.
+x22x0          |-(gD*pow(cd,2))                                                                                                % Ap   n1   n1~   coupling.
+x23x0          |-(cd*gD*sd)                                                                                                    % Ap   n1   n2~   coupling.
+x24x0          |cd*gD*sd                                                                                                       % Ap   n1~  n2    coupling.
+x25x0          |-(gD*pow(sd,2))                                                                                                % Ap   n2   n2~   coupling.
+x26x0          |epsilon                                                                                                        % Ap   e+   e-    coupling.

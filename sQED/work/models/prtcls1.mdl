@@ -1,0 +1,8 @@
+ScalarQEDdec
+ Particles
+ Full  name  |A          |A+         | number |2*spin| mass          |width          |color|aux|>LaTex(A)<|>LaTeX(A+)   <|
+ef           |e-         |e+         |11      |1     |Me             |!Wef           |1    |0  |e-        |e+            |
+Ap           |Ap         |Ap         |1000050 |2     |MAp            |!wAp           |1    |0  |Ap        |Ap            |
+S            |S          |S          |1000034 |0     |MS             |!WS            |1    |0  |S         |S             |
+~n1           |~n1         |~n1~        |1000035 |0     |Mn1            |!Wn1           |1    |0  |n1        |n1~           |
+~n2           |~n2         |~n2~        |1000045 |0     |Mn2            |!Wn2           |1    |0  |n2        |n2~           |

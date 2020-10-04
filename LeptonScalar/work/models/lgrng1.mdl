@@ -1,0 +1,7 @@
+LeptonScalar
+ Vertices
+A1           |A2           |A3           |A4           |>         Factor              <|>  Lorentz part  <|
+phi          |~chi~        |~chi         |             |x1x0                           |x1x1*1+x1x2*i*G5
+phi          |mu+          |mu-          |             |x2x0                           |x2x1*1+x2x2*i*G5
+phi          |mu+          |tau-         |             |x3x0                           |x3x1*1+x3x2*i*G5
+phi          |tau+         |mu-          |             |x4x0                           |x4x1*1+x4x2*i*G5
