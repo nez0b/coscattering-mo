@@ -2054,6 +2054,7 @@ static void XderivLnCosc1(double x, double *Y, double *dYdx)
 }
 
 
+
 double darkOmegaCosc1(double * Xf,  double (*f0)(double))
 {
   double Yt,Xt=7;
@@ -2160,7 +2161,9 @@ double darkOmegaCosc1(double * Xf,  double (*f0)(double))
   }
 }
 
+/*=================================================*/
 /*===========  Coscattering 2D  ==================*/
+/*=================================================*/
 
 static void XderivLnCosc2(double X, double *Y, double *dYdX)
 {
@@ -2216,6 +2219,42 @@ static void XderivLnCoscChi(double x, double *Y, double *dYdx)
   //printf("XLN: dydx1:%3e\tdydx2:%3e\n",dYdx[0],dYdx[1]);
 }
 
+static void XderivLnCosc2d(double x, double *Y, double*f,double h,double*dfdx,double*dfdy)
+{
+  int i, n=2;
+  double yeq1,yeq2, sqrt_gStar;
+  double T,heff,geff;
+  double vSig0, vSig1,coeff1,coeff2;
+  
+  T=Mcdm/x;  
+  //yeq=Yeq(T);
+  yeq1=Yeq1(T);
+  yeq2=Yeq2(T);
+  //if(y<=yeq) {*dYdx=0; return;} else epsY=deltaY/y;
+  
+  vSig0=vSigmaStat0(T)/3.8937966E8;//GeV−2 = 0.3894 mb = 3.894E8 pb
+  vSig1=vSigmaStat1(T)/3.8937966E8;//GeV−2 = 0.3894 mb = 3.894E8 pb
+    
+  //coeff = -(3*1.202/4)*ge*(T/x/sqrt(8*pow(M_PI,7)))*MPlank*sqrt(1/gEff(T))*sqrt(90)*vSig0;
+  coeff1 = -neqF(T,5.11E-4,2)*(1/pow(T,2)/x/sqrt(8*pow(M_PI,3)))*MPlank*sqrt(1/gEff(T))*sqrt(90)*vSig0;
+  coeff2 = -(Mcdm/x/x)*MPlank*sqrt(gEff(Mcdm/x))*sqrt(M_PI/45)*vSig1;
+  //printf("cosc factor: %4e \n",coeff);
+  //printf("y difference: %4e\n",(yeq/y));
+  f[0] = coeff1*(Y[0]-yeq1);
+  f[1] = coeff2*(Y[1]*Y[1]-yeq2*yeq2)-coeff1*(Y[0]-yeq1);
+
+  if(dfdx) for(i=0;i<n;i++) dfdx[i]=0;
+    if(dfdy)
+    {
+      dfdy[0*n+0]= coeff1;
+      dfdy[0*n+1]=  0;
+      dfdy[1*n+0]=  -coeff1;
+      dfdy[1*n+1]= 2*coeff2*Y[1];
+    }
+  }
+
+// ***************************END　of DERIVARIVE ********************************
+
 static int odeintTest(double * ystart, int nvar, double x1, double x2, double eps, 
          double h1, void (*derivs)(double,double *,double *))
 {
@@ -2237,12 +2276,14 @@ static int odeintTest(double * ystart, int nvar, double x1, double x2, double ep
 
 double darkOmegaCosc2d(double * Xf,  double (*f0)(double),double (*f1)(double))
 {
-  double Xt=12;
+  double Xt=9;
   //double Yt[2];
   double Z1=1.1;
   double Z2=10,Zf=2.5; 
   double y;
+  double yscale[2]= {1,1};
   int i;
+  double h;
   
   if(f0) vSigmaStat0=f0; else vSigmaStat0=vSigmaZero;
   if(f1) vSigmaStat1=f1; else vSigmaStat1=vSigmaZero;
@@ -2272,7 +2313,7 @@ double darkOmegaCosc2d(double * Xf,  double (*f0)(double),double (*f1)(double))
   //Yt=  darkOmega1Ext1(&Xt, Z1, (Z1-1)/5);
   //double Yt = Yeq(Mcdm/Xt)*1.1;
   //Yt[1] = Yeq2(Mcdm/Xt);
-  double Yt[2] = {Yeq(Mcdm/Xt)*1.1,Yeq2(Mcdm/Xt)};
+  double Yt[2] = {Yeq1(Mcdm/Xt)*1.01,Yeq2(Mcdm/Xt)};
   //printf("initial x: %3e, initial y1: %3e \n",Xt,Yt[0]);
   
 
@@ -2296,15 +2337,13 @@ double darkOmegaCosc2d(double * Xf,  double (*f0)(double),double (*f1)(double))
 
     if(Tend<1.E-3) break;
     Tbeg=Tend;       
-    Tend/=1.3;                                 
+    Tend/=1.1;                                 
     Xt=Mcdm/(Tbeg);
     X2=Mcdm/(Tend); 
+    h = (X2-Xt)/2;
     //y=log(Yt);
-    odeint(Yt,2, Xt , X2 , 1.E-3, (X2-Xt)/2, XderivLnCoscChi); 
-    //Yt=exp(y);
-    //Yt[0] = Yeq(Mcdm/Xt)*1.;
-    //Yt[1] = Yeq2(Mcdm/Xt);
-    //printf("current Y1:%4e\t Y2:%4e\n",Yt[0],Yt[1]);
+    //odeint(Yt,2, Xt , X2 , 1.E-3, (X2-Xt)/2, XderivLnCoscChi); 
+    stifbs(1,Xt,X2,2,Yt,yscale,1.E-3, &h, XderivLnCosc2d);
     Xt=X2;
     //if(odeint(&Yt,1 ,s3_t , s3_2 , 1.E-3, (s3_2-s3_t)/2, &XderivLnExt)){ printf("problem in solving diff.equation\n"); return -1;}
     //if(!isfinite(Yt)||FError)  return -1;
@@ -2326,18 +2365,18 @@ double darkOmegaCosc2d(double * Xf,  double (*f0)(double),double (*f1)(double))
   {  double T1,T2,Y1,Y2,dY2,dY1;
      T1=Ttab[0];
      Y1=Ytab[0];
-     dY1=Zf*Yeq(T1)-Y1;  
+     dY1=Zf*Yeq1(T1)-Y1;  
      *Xf=Mcdm/T1;
      for(i=1;i<Ntab;i++)            
      { T2=Ttab[i];
        Y2=Ytab[i]; 
-       dY2=Zf*Yeq(T2)-Y2;
+       dY2=Zf*Yeq1(T2)-Y2;
        if(dY2<0)
        {          
          for(;;)
          {  double al,Tx,Yx,dYx,Xx;
             al=dY2/(dY2-dY1);
-            Tx=al*T1+(1-al)*T2, Yx=polint3(Tx,Ntab,Ttab,Ytab),   dYx=Zf*Yeq(Tx)-Yx;
+            Tx=al*T1+(1-al)*T2, Yx=polint3(Tx,Ntab,Ttab,Ytab),   dYx=Zf*Yeq1(Tx)-Yx;
             if(fabs(dYx)<0.01*Yx) 
             { *Xf=Mcdm/Tx;
               break;
@@ -2540,7 +2579,7 @@ double Beps=1.E-4;
 double Yeq1(double T)
 {  double heff,s;
    s=2*M_PI*M_PI*T*T*T*hEff(T)/45;
-   return  (T/(2*M_PI*M_PI*s))*geff1_(T)*exp(-Mcdm1/T);
+   return  pow(Mcdm*T/(2*M_PI),1.5)*2*exp(-Mcdm/T)/s;;
 }
 
 
